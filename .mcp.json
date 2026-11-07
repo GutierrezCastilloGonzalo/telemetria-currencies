@@ -1,0 +1,1 @@
+{"mcpServers":{"divisas":{"command":"npx","args":["tsx","mcp/server.ts"]}}}

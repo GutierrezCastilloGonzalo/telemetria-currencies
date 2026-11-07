@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Rate {
+  id         Int      @id @default(autoincrement())
+  pair       String   @default("USD/PEN")
+  source     String
+  buy        Float
+  sell       Float
+  capturedAt DateTime @default(now())
+
+  @@index([pair, capturedAt])
+}
+
+model Alert {
+  id        Int      @id @default(autoincrement())
+  direction String // "UP" | "DOWN"
+  changePct Float
+  fromSell  Float
+  toSell    Float
+  message   String
+  aiAdvice  String?
+  createdAt DateTime @default(now())
+}
